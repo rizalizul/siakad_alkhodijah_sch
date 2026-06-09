@@ -1,61 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SIAKAD Al-Khodijah
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem Informasi Akademik (SIAKAD) terpadu untuk Sekolah Al-Khodijah. Aplikasi berbasis web ini dikembangkan menggunakan Laravel 12 untuk mengelola proses akademik, penerimaan siswa baru (PPDB), dan keuangan sekolah secara efisien.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Aplikasi ini mencakup berbagai modul yang dirancang untuk berbagai peran (Staf Administrasi, Bendahara, Wali Kelas, Kepala Sekolah, dll):
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Manajemen Master Data:** Pengelolaan Tahun Ajaran, Kelas, Mata Pelajaran, dan Data Guru.
+* **Penerimaan Siswa Baru (PPDB):** Pendaftaran online, verifikasi dokumen, dan penentuan status siswa.
+* **Modul Keuangan:**
+    * Pengaturan Jenis Pembayaran & Tagihan Siswa.
+    * Pencatatan Pembayaran PPDB dan SPP.
+    * Upload bukti pembayaran dan **Cetak Kwitansi PDF**.
+* **Modul Akademik:**
+    * Input Nilai Sumatif & Formatif (Tujuan Pembelajaran).
+    * Pencatatan Absensi Bulanan Siswa.
+    * Input data Ekstrakurikuler dan Catatan Wali Kelas.
+    * Pemrosesan dan Finalisasi Rapor oleh Wali Kelas.
+* **Persetujuan Dokumen:** Fitur *Approval* (Tanda Tangan) Rapor oleh Kepala Sekolah.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Stack Teknologi
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* **Framework:** Laravel 12
+* **Bahasa:** PHP 8.3+
+* **Database:** MySQL 8.0+
+* **Library PDF:** `barryvdh/laravel-dompdf`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 💻 Panduan Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal (Development) Anda. Proyek ini tidak memerlukan proses build *frontend* (`npm install`/`npm run dev`).
 
-### Premium Partners
+### 1. Kloning Repositori
+```bash
+git clone [https://github.com/username-anda/siakad_alkhodijahsch.git](https://github.com/username-anda/siakad_alkhodijahsch.git)
+cd siakad_alkhodijahsch
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Install Dependencies (PHP)
+```bash
+composer install
+```
 
-## Contributing
+### 3. Pengaturan Environment
+Salin file `.env.example` menjadi `.env`:
+```bash
+cp .env.example .env
+```
+Buka file `.env` dan sesuaikan konfigurasi database Anda:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=siakad_alkhodijah2
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Setup Database & Generate Key
+Aplikasi ini sudah menyertakan *dump* database lengkap beserta data awal.
+1. Buat database kosong di MySQL Anda (misal: `siakad_alkhodijah2`).
+2. Import file `siakad_alkhodijahsch.sql` ke dalam database tersebut melalui phpMyAdmin atau terminal database manager Anda.
+3. Setelah database berhasil diimpor, jalankan perintah untuk *generate application key*:
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+### 5. Hubungkan Folder Storage (Wajib)
+Agar foto profil, dokumen PPDB, dan bukti pembayaran dapat diakses melalui web, buat *symbolic link* untuk *storage*:
+```bash
+php artisan storage:link
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Jalankan Aplikasi
+```bash
+php artisan serve
+```
+Aplikasi sekarang dapat diakses melalui browser di alamat: `http://127.0.0.1:8000`
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🔐 Akun Pengujian (Demo)
 
-## License
+Database yang diimpor dari file SQL sudah mencakup data *seeder* pengguna. Anda dapat menggunakan akun-akun berikut untuk login dan menguji fitur sesuai dengan *role* masing-masing:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Role | Nama | Email | Password |
+| :--- | :--- | :--- | :--- |
+| **Staf Administrasi** | Rizky Firdausi Nuzula | `admin@alkhodijah.sch` | `12345678` |
+| **Bendahara** | Azmil Ulya | `bendahara@alkhodijah.sch` | `12345678` |
+| **Wakasek Kurikulum** | Maslakhatul Ummah | `kurikulum@alkhodijah.sch` | `12345678` |
+| **Kepala Sekolah** | Afifatur Rosidah | `kepsek@alkhodijah.sch` | `12345678` |
+| **Wali Kelas (1A)** | Nanda Fitriana | `nanda.fitriana@alkhodijah.sch` | `12345678` |
+| **Guru Mapel** | Adella Nuraini | `adella.nuraini@alkhodijah.sch` | `12345678` |
+
+> **Catatan Tambahan:**
+> Karena ini adalah mode pengembangan, fungsi *Cron Job/Scheduler* tidak diaktifkan secara otomatis. Anda tidak perlu menjalankan `php artisan schedule:work` untuk menguji aplikasi secara keseluruhan.
