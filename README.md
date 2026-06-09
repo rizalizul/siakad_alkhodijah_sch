@@ -34,11 +34,13 @@ Aplikasi ini mencakup berbagai modul yang dirancang untuk berbagai peran (Staf A
 
 ## 💻 Panduan Instalasi
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal (Development) Anda. Proyek ini tidak memerlukan proses build *frontend* (`npm install`/`npm run dev`).
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal (Development) Anda. Proyek ini tidak memerlukan proses build *frontend* (`npm install`/`npm run dev`). 
+
+Pertama, buka Terminal atau *Command Prompt* (cmd) dan arahkan ke folder root server lokal Anda, misalnya `C:\laragon\www` (jika menggunakan Laragon) atau `C:\xampp\htdocs` (jika menggunakan XAMPP).
 
 ### 1. Kloning Repositori
 ```bash
-git clone [https://github.com/username-anda/siakad_alkhodijahsch.git](https://github.com/username-anda/siakad_alkhodijahsch.git)
+git clone https://github.com/rizalizul/siakad_alkhodijah_sch.git
 cd siakad_alkhodijahsch
 ```
 
@@ -52,27 +54,27 @@ Salin file `.env.example` menjadi `.env`:
 ```bash
 cp .env.example .env
 ```
-Buka file `.env` dan sesuaikan konfigurasi database Anda:
+Buka file `.env` di *code editor* Anda dan sesuaikan konfigurasi database-nya:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=siakad_alkhodijah2
+DB_DATABASE=siakad_alkhodijah
 DB_USERNAME=root
 DB_PASSWORD=
 ```
 
 ### 4. Setup Database & Generate Key
 Aplikasi ini sudah menyertakan *dump* database lengkap beserta data awal.
-1. Buat database kosong di MySQL Anda (misal: `siakad_alkhodijah2`).
-2. Import file `siakad_alkhodijahsch.sql` ke dalam database tersebut melalui phpMyAdmin atau terminal database manager Anda.
-3. Setelah database berhasil diimpor, jalankan perintah untuk *generate application key*:
+1. Buat database kosong di MySQL Anda dengan nama `siakad_alkhodijah` (Anda bisa menggunakan phpMyAdmin atau aplikasi klien database lainnya).
+2. *Import* file `siakad_alkhodijahsch.sql` (yang ada di dalam folder proyek) ke dalam database tersebut.
+3. Setelah database berhasil diimpor, kembali lagi ke cmd/terminal proyek Anda, lalu jalankan perintah berikut untuk *generate application key*:
 ```bash
 php artisan key:generate
 ```
 
 ### 5. Hubungkan Folder Storage (Wajib)
-Agar foto profil, dokumen PPDB, dan bukti pembayaran dapat diakses melalui web, buat *symbolic link* untuk *storage*:
+Agar foto profil, dokumen PPDB, dan bukti pembayaran dapat diakses melalui web, Anda harus membuat *symbolic link* untuk direktori *storage*:
 ```bash
 php artisan storage:link
 ```
