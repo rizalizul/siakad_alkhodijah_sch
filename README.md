@@ -1,4 +1,6 @@
 # SIAKAD Al-Khodijah
+<img width="1777" height="898" alt="Dashboard-SIAKAD-Al-Khodijah" src="https://github.com/user-attachments/assets/09c8cff1-d8c2-49ca-b40d-5519144dfefc" />
+
 
 Sistem Informasi Akademik (SIAKAD) terpadu untuk Sekolah Al-Khodijah. Aplikasi berbasis web ini dikembangkan menggunakan Laravel 12 untuk mengelola proses akademik, penerimaan siswa baru (PPDB), dan keuangan sekolah secara efisien.
 
